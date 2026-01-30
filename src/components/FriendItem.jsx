@@ -1,6 +1,13 @@
 import Button from './Button';
 
-export default function FriendItem({ name, image, balance }) {
+export default function FriendItem({
+  id,
+  name,
+  image,
+  balance,
+  selectFriend,
+  selectedFriend,
+}) {
   return (
     <li>
       <img
@@ -15,7 +22,12 @@ export default function FriendItem({ name, image, balance }) {
       ) : (
         <p className="red">{`You owe ${name} ${Math.abs(balance)} Euro`}</p>
       )}
-      <Button>Select</Button>
+
+      {selectedFriend === id ? (
+        <Button onClick={() => selectFriend('')}>Close</Button>
+      ) : (
+        <Button onClick={() => selectFriend(id)}>Select</Button>
+      )}
     </li>
   );
 }

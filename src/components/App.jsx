@@ -3,6 +3,7 @@ import FriendsList from './FriendsList';
 import AddFriendForm from './AddFriendForm';
 import { useState } from 'react';
 import Button from './Button';
+import SplitForm from './SplitForm';
 
 const initialFriends = [
   {
@@ -28,26 +29,42 @@ const initialFriends = [
 function App() {
   const [friendsList, setFriendsList] = useState(initialFriends);
   const [showAddFriend, setShowAddFriend] = useState(false);
+  const [selectedFriend, setSelectedFriend] = useState('');
+
   return (
-    <>
-      <FriendsList items={friendsList} />
+    <div className="app">
+      <div className="sidebar">
+        <FriendsList
+          items={friendsList}
+          selectFriend={setSelectedFriend}
+          selectedFriend={selectedFriend}
+        />
 
-      {showAddFriend && (
-        <>
-          <AddFriendForm
-            onSubmit={(newFriend) => {
-              setFriendsList((friendsList) => [...friendsList, newFriend]);
-              setShowAddFriend(false);
-            }}
-          />
-          <Button onClick={() => setShowAddFriend(false)}>Close</Button>
-        </>
-      )}
+        {showAddFriend && (
+          <>
+            <AddFriendForm
+              onSubmit={(newFriend) => {
+                setFriendsList((friendsList) => [...friendsList, newFriend]);
+                setShowAddFriend(false);
+              }}
+            />
+            <Button onClick={() => setShowAddFriend(false)}>Close</Button>
+          </>
+        )}
 
-      {!showAddFriend && (
-        <Button onClick={() => setShowAddFriend(true)}>Add Friend</Button>
+        {!showAddFriend && (
+          <Button onClick={() => setShowAddFriend(true)}>Add Friend</Button>
+        )}
+      </div>
+      {selectedFriend && (
+        <SplitForm
+          selectedFriend={selectedFriend}
+          unselectFriend={setSelectedFriend}
+          friendsList={friendsList}
+          changeFriendsList={setFriendsList}
+        />
       )}
-    </>
+    </div>
   );
 }
 
