@@ -17,9 +17,3 @@ Split Money Friends is a simple React application for managing shared expenses w
 - Vite
 - CSS Modules
 - React Hooks (`useState`)
-
-
-
-## 📄 License
-
-This project was created for educational purposes.
