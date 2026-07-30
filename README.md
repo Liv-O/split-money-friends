@@ -10,6 +10,10 @@ Split Money Friends is a simple React application for managing shared expenses w
 - Display who owes money and who should receive it
 - Responsive and user-friendly interface
 
+## 🌐 Live Demo
+
+🔗 https://split-money-friends.vercel.app/
+
 ## 🛠️ Built With
 
 - React
